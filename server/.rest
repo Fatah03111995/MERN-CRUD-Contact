@@ -1,0 +1,27 @@
+POST http://localhost:5000/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "fatih",
+    "phoneNumber": "085798222123",
+    "email": "fatih@gmail.com"
+}
+
+###
+GET http://localhost:5000/contacts
+
+###
+GET http://localhost:5000/contacts/63da10e1eceb6bc907d8fed9
+
+###
+PATCH http://localhost:5000/contacts/63da10e1eceb6bc907d8fed9 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "fatih revisi",
+    "phoneNumber": "085798222123",
+    "email": "fatih@gmail.com"
+}
+
+###
+DELETE  http://localhost:5000/contacts/63da10e1eceb6bc907d8fed9 HTTP/1.1
