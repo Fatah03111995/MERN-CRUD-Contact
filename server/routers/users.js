@@ -1,6 +1,18 @@
 import express from "express";
+import {
+  getUsers,
+  getUserById,
+  addUser,
+  editUserById,
+  deleteUserById,
+} from "../controllers/users";
 
 const routes = express.Router();
-routes.get().post().patch().delete();
+routes
+  .get("/", getUsers)
+  .get("/:id", getUserById)
+  .post("/", addUser)
+  .patch("/:id", editUserById)
+  .delete("/:id", deleteUserById);
 
 export default routes;
