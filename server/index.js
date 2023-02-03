@@ -3,7 +3,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import contactsRoute from "./routers/contacts.js";
-// import usersRoute from "./routers/users.js";
+import usersRoute from "./routers/users.js";
+import authRoute from "./routers/auth.js";
 
 const app = express();
 
@@ -13,8 +14,9 @@ app.use(express.json());
 app.use(cors());
 
 // routes
+app.use("/auth", authRoute);
 app.use("/contacts", contactsRoute);
-// app.use("/users", usersRoute);
+app.use("/users", usersRoute);
 
 // mongodb configuration and connection
 const PORT = process.env.PORT || 6000;
