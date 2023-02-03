@@ -22,7 +22,8 @@ export const addContact = async (req, res) => {
     const added = await add.save();
     res.status(201).json(added);
   } catch (e) {
-    res.status(500).json({ message: e });
+    console.log(e.message);
+    res.status(500).json({ message: e.message });
   }
 };
 export const editContactById = async (req, res) => {
