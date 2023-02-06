@@ -6,15 +6,15 @@ const UserList = () => {
   const [contacts, setContacts] = useState([]);
   useEffect(() => {
     getContacts();
-  }, [contacts]);
+  }, []);
   const getContacts = async () => {
     const response = await axios.get("http://localhost:5000/contacts");
     setContacts(response.data);
   };
 
-  const del = async (id) => {
+  const del = async (e, id) => {
     try {
-      axios.delete(`http://localhost:5000/contacts/${id}`);
+      await axios.delete(`http://localhost:5000/contacts/${id}`);
       getContacts();
     } catch (e) {
       console.log(e.message);
@@ -24,7 +24,7 @@ const UserList = () => {
   const Kosong = () => {
     return (
       <tr>
-        <td colspan='5' className='table-danger text-center fw-bold'>
+        <td colSpan='5' className='table-danger text-center fw-bold'>
           Belum Ada Data
         </td>
       </tr>
@@ -51,7 +51,7 @@ const UserList = () => {
           {contacts.length > 0 ? (
             contacts.map((contact, i) => {
               return (
-                <tr>
+                <tr key={contact._id}>
                   <td>{i + 1}</td>
                   <td>{contact.name}</td>
                   <td>{contact.phoneNumber}</td>
@@ -65,8 +65,8 @@ const UserList = () => {
                     </Link>
                     <button
                       className='btn btn-danger'
-                      onClick={() => {
-                        del(contact._id);
+                      onClick={(e) => {
+                        del(e, contact._id);
                       }}
                     >
                       Delete
